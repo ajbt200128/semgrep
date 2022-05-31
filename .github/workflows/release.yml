@@ -163,7 +163,7 @@ jobs:
         with:
           submodules: true
       - name: Run OSX release script
-        run: ./scripts/osx-release.sh
+        run: ./scripts/osx-m1-release.sh
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
