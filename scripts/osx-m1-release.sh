@@ -1,7 +1,6 @@
 # Because we're running this on a remote machine, we don't want to reinstall
 # everything every time
-#!/usr/bin/zsh
-set -e
+#!/usr/bin/env bash
 opam switch 4.12.0;
 git submodule update --init --recursive --depth 1
 
