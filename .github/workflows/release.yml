@@ -229,7 +229,7 @@ jobs:
           path: semgrep/dist.zip
           
   build-wheels-m1:
-    runs-on: macos-10.15
+    runs-on: [self-hosted,macOS,ARM64]
     needs: [build-core-m1]
     steps:
       - name: Checkout
@@ -332,7 +332,7 @@ jobs:
       - name: Unzip OSX Wheel
         # Don't unzip tar.gz because it already exists from ./manylinux-wheel/dist.zip.
         run: unzip ./osx-wheel/dist.zip "*.whl"
-      - name: Unzip OSX Wheel
+      - name: Unzip M1 Wheel
         # Don't unzip tar.gz because it already exists from ./manylinux-wheel/dist.zip.
         run: unzip ./m1-wheel/dist.zip "*.whl"
       - name: Publish to Pypi
