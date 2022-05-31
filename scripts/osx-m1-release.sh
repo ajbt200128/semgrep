@@ -7,15 +7,15 @@ git submodule update --init --recursive --depth 1
 
 eval "$(opam env)"
 
-rm /usr/local/opt/pcre/lib/libpcre.1.dylib
+rm /usr/local/opt/pcre/lib/libpcre.1.dylib || true
 
 make setup
 make config
 
 # Remove dynamically linked libraries to force MacOS to use static ones
 # This needs to be done after make setup but before make build-*
-rm /usr/local/lib/libtree-sitter.0.0.dylib
-rm /usr/local/lib/libtree-sitter.dylib
+rm /usr/local/lib/libtree-sitter.0.0.dylib || true
+rm /usr/local/lib/libtree-sitter.dylib || true
 
 make build-core
 
