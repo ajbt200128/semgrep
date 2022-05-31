@@ -1,4 +1,6 @@
-#! /usr/bin/env bash
+# Because we're running this on a remote machine, we don't want to reinstall
+# everything every time
+#!/usr/bin/zsh
 set -e
 brew update # Needed to sidestep bintray brownout
 #coupling: this should be the same version than in our Dockerfile
