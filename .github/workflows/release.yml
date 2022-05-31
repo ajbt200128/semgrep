@@ -227,6 +227,31 @@ jobs:
         with:
           name: osx-wheel
           path: semgrep/dist.zip
+          
+  build-wheels-m1:
+    runs-on: macos-10.15
+    needs: [build-core-m1]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: semgrep-m1-${{ github.sha }}
+      - name: Install artifacts
+        run: unzip semgrep-m1-${{ github.sha }}/artifacts.zip
+      - name: Build the wheels
+        env:
+          # Relative because build-wheels does a 'cd semgrep'
+          SEMGREP_CORE_BIN: ../artifacts/semgrep-core
+        run: ./scripts/build-wheels.sh
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: m1-wheel
+          path: semgrep/dist.zip
 
   build-wheels-manylinux:
     runs-on: ubuntu-latest
@@ -297,11 +322,19 @@ jobs:
         with:
           name: osx-wheel
           path: osx-wheel
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: m1-wheel
+          path: m1-wheel
       - name: Unzip
         run: unzip ./manylinux-wheel/dist.zip
       - name: Unzip OSX Wheel
         # Don't unzip tar.gz because it already exists from ./manylinux-wheel/dist.zip.
         run: unzip ./osx-wheel/dist.zip "*.whl"
+      - name: Unzip OSX Wheel
+        # Don't unzip tar.gz because it already exists from ./manylinux-wheel/dist.zip.
+        run: unzip ./m1-wheel/dist.zip "*.whl"
       - name: Publish to Pypi
         uses: pypa/gh-action-pypi-publish@master
         with:
