@@ -162,8 +162,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Setup Python
-        uses: actions/setup-python@v3
       - name: Run OSX release script
         run: ./scripts/osx-release.sh
       - name: Upload artifacts
