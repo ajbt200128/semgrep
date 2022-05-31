@@ -2,8 +2,6 @@
 # everything every time
 #!/usr/bin/zsh
 set -e
-brew update # Needed to sidestep bintray brownout
-#coupling: this should be the same version than in our Dockerfile
 opam switch 4.12.0;
 git submodule update --init --recursive --depth 1
 
