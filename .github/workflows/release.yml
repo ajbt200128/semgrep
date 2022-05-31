@@ -308,7 +308,7 @@ jobs:
 
   upload-wheels:
     runs-on: ubuntu-latest
-    needs: [test-wheels-manylinux, build-wheels-osx]
+    needs: [test-wheels-manylinux, build-wheels-osx, build-wheels-m1]
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v3
