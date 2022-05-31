@@ -238,6 +238,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: semgrep-m1-${{ github.sha }}
+      - name: Get CWD
+        run: pwd
       - name: Install artifacts
         run: unzip semgrep-m1-${{ github.sha }}/artifacts.zip
       - name: Build the wheels
