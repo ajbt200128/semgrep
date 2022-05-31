@@ -234,12 +234,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: "recursive"
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: semgrep-m1-${{ github.sha }}
-      - name: Install artifacts
-        run: unzip semgrep-m1-${{ github.sha }}/artifacts.zip
+     # - name: Download artifacts
+     #   uses: actions/download-artifact@v3
+     #   with:
+     #     name: semgrep-m1-${{ github.sha }}
+     # - name: Install artifacts
+     #   run: unzip semgrep-m1-${{ github.sha }}/artifacts.zip
       - name: Build the wheels
         env:
           # Relative because build-wheels does a 'cd semgrep'
